@@ -54,8 +54,11 @@ RUN CONFIG="\
 	&& apk add --no-cache --update --virtual .build-deps gcc libc-dev make openssl-dev pcre-dev zlib-dev linux-headers patch curl git  \
  	&& curl -fSL https://nginx.org/download/nginx-$NGINX_VERSION.tar.gz -o nginx.tar.gz \
 	&& git clone https://github.com/chobits/ngx_http_proxy_connect_module.git /usr/src/ngx_http_proxy_connect_module \
-	&& cd /usr/src/ngx_http_proxy_connect_module && export PROXY_CONNECT_MODULE_PATH="$(pwd)" && cd - \
+	&& git clone https://github.com/arut/nginx-rtmp-module.git /usr/src/nginx-rtmp-module \
+	&& cd /usr/src/ngx_http_proxy_connect_module \
+	&& export PROXY_CONNECT_MODULE_PATH="$(pwd)" && cd - \
 	&& CONFIG="$CONFIG --add-module=$PROXY_CONNECT_MODULE_PATH" \
+	&& CONFIG="$CONFIG --add-module=/usr/src/nginx-rtmp-module" \
 	&& mkdir -p /usr/src \
 	&& tar -zxC /usr/src -f nginx.tar.gz \
 	&& rm nginx.tar.gz \
