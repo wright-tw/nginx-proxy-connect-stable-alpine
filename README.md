@@ -1,4 +1,4 @@
-# nginx:stable-alpine + proxy_connect
+# nginx:stable-alpine + proxy_connect + rtmp mode
 
 Upstreams: 
 - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/tree/master/stable/alpine) (due this has since long diverged)
